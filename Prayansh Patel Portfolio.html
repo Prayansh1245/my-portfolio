@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayansh Patel - Portfolio Showcase</title>
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --text-dark: #0f172a;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border-color: #e2e8f0;
+            --badge-bg: #f1f5f9;
+            --badge-text: #1e293b;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            color: var(--text-main);
+            background-color: #f8fafc;
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-bg);
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        /* Main Container */
+        main {
+            margin-top: 70px;
+        }
+
+        section {
+            padding: 5rem 10% 4rem 10%;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        section:nth-child(odd) {
+            background-color: #f8fafc;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            color: var(--text-dark);
+            margin-bottom: 2.5rem;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 0.5rem auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        #about-me {
+            background: linear-gradient(135deg, var(--primary-bg) 0%, #1e293b 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 8rem 10% 6rem 10%;
+        }
+
+        .profile-pic-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--accent);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-pic-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-content h2 {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero-summary {
+            max-width: 800px;
+            margin: 0 auto 2.5rem auto;
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .hero-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .detail-card h3 {
+            font-size: 1.1rem;
+            color: #60a5fa;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .detail-card p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-badge {
+            background-color: var(--card-bg);
+            color: var(--badge-text);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-3px);
+            background-color: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #cbd5e1;
+        }
+
+        .project-card h3 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-stack {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            background-color: #eff6ff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+        }
+
+        .project-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Education Timeline */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 5px;
+            bottom: 5px;
+            width: 3px;
+            background-color: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 0 2px var(--border-color);
+        }
+
+        .timeline-content {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-institution {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-container p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .contact-info-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-bg);
+            color: #ffffff;
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(59, 130, 246, 0.25);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--badge-bg);
+            color: var(--text-dark);
+            border-color: #cbd5e1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-bg);
+            color: #94a3b8;
+            text-align: center;
+            padding: 2rem 5%;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            main {
+                margin-top: 110px;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+
+            .hero-content h1 {
+                font-size: 2.25rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <a href="#about-me" class="logo">Prayansh Patel</a>
+        <nav>
+            <ul>
+                <li><a href="#about-me">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero & Profile Identity -->
+        <section id="about-me">
+            <div class="hero-content">
+                <div class="profile-pic-container">
+                    <img src="WhatsApp Image 2026-11-17 at 6.03.11 PM.jpeg" alt="Prayansh Patel Profile Picture">
+                </div>
+                <h1>Prayansh Patel</h1>
+                <h2>3rd Year B.Tech CSE Student & Aspiring Data Engineer</h2>
+                <p class="hero-summary">
+                    Hello! I am a 3rd-year Computer Science & Engineering student at Indore Institute of Science and Technology. I am highly interested in data structures, manipulating datasets, backend architectures, and expanding my skill sets to build smart digital systems.
+                </p>
+                <div class="hero-details">
+                    <div class="detail-card">
+                        <h3>Interests & Hobbies</h3>
+                        <p>Reading analytical books, playing cricket, and exploring new technological frameworks.</p>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Career Goals</h3>
+                        <p>To establish a robust career as a professional Data Engineer, designing stable database architectures, data pipelines, and scalable warehouse models.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skillsets -->
+        <section id="skills">
+            <h2 class="section-title">Technical Skillsets</h2>
+            <div class="skills-grid">
+                <span class="skill-badge">C</span>
+                <span class="skill-badge">C++</span>
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">MySQL</span>
+                <span class="skill-badge">HTML5</span>
+                <span class="skill-badge">CSS3</span>
+                <span class="skill-badge">MS-Excel</span>
+            </div>
+        </section>
+
+        <!-- Academic & Personal Projects -->
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div>
+                        <h3>Library Management System</h3>
+                        <span class="project-stack">C / C++ | File Handling</span>
+                        <p>A console-based software application built to streamline resource tracking, book distribution logs, structural inventories, and automated return processing structures.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h3>Simple Calculator Application</h3>
+                        <span class="project-stack">Python</span>
+                        <p>An execution application implementing functional mathematical methods, conditional state flows, and continuous processing options directly within terminal frames.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h3>Integrated Portfolio Showcase Architecture</h3>
+                        <span class="project-stack">HTML5 | CSS3 Merge</span>
+                        <p>A complete web platform built by merging semantic structuring with cohesive stylesheet classes to enable fluid layout scaling across standard digital screens.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chronological Education Timeline -->
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>B.Tech in Computer Science & Engineering</h3>
+                        <div class="timeline-institution">Indore Institute of Science and Technology</div>
+                        <div class="timeline-meta">
+                            <span>Status: Pursuing (Currently in 3rd Year)</span>
+                            <span>Passing Year: 2028 (Expected)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Higher Secondary Certificate (12th Grade)</h3>
+                        <div class="timeline-institution">Adarsh Gyaan Jyoti Higher Secondary School</div>
+                        <div class="timeline-meta">
+                            <span>Score: 85.2%</span>
+                            <span>Passing Year: 2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Secondary School Certificate (10th Grade)</h3>
+                        <div class="timeline-institution">Rao's Rukmani Devi Public School, Lolri, Rajmarg</div>
+                        <div class="timeline-meta">
+                            <span>Score: 81.0%</span>
+                            <span>Passing Year: 2022</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Contact Card -->
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <p>Feel free to reach out to discuss data architectures, backend systems, or internship profiles!</p>
+                <div class="contact-info-grid">
+                    <a href="mailto:prayanshpatel44@gmail.com" class="contact-link">✉️ prayanshpatel44@gmail.com</a>
+                    <a href="tel:+918103415869" class="contact-link">📞 +91 81034 15869</a>
+                </div>
+                .social-buttons {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1rem;
+                }
+                <div class="social-buttons">
+                    <a href="https://github.com" target="_blank" class="btn">GitHub Profile</a>
+                    <a href="https://linkedin.com" target="_blank" class="btn btn-secondary">LinkedIn Profile</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Assignment Metadata Footer -->
+    <footer>
+        <p>© 2026 Prayansh Patel. Developed for Internet & Web Technology Assignment. Date of submission: 25th October 2026.</p>
+    </footer>
+
+</body>
+</html>
